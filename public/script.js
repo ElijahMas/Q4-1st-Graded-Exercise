@@ -7,39 +7,23 @@ function solve() {
 
     const name = formData.get('name');
     const gender = formData.get('gender');
-    const guests = [];
 
-    // Collect guest names
-    for (let entry of formData.entries()) {
-        if (entry[0].startsWith("guest")) {
-            guests.push(entry[1]);
-        }
-    }
-
-    // Validate inputs
-    if (!name || !gender || guests.length === 0) {
-        alert("Please enter all required details: celebrant name, gender, and guest names.");
+    if (!name || !gender) {
+        alert("Please enter your name and select a gender!");
         return;
     }
 
-    // Define songs
-    const happyBirthday = `Happy birthday to you Happy birthday to you Happy birthday dear ${name} Happy birthday to you`.split(" ");
-    const goodFellow = `For ${gender === "male" ? "he's" : "she's"} a jolly good fellow, For ${gender === "male" ? "he's" : "she's"} a jolly good fellow, For ${gender === "male" ? "he's" : "she's"} a jolly good fellow, which nobody can deny!`.split(" ");
+    let pronoun = (gender === 'male') ? "he's" : "she's";
 
-    // Assign each word of Happy Birthday to guests in order
-    let outputText = "<h2>Happy Birthday Song</h2>";
-    for (let i = 0; i < happyBirthday.length; i++) {
-        outputText += `${guests[i % guests.length]}: ${happyBirthday[i]}<br>`;
-    }
+    const jollyGoodFellow = `For ${pronoun} a jolly good fellow. For ${pronoun} a jolly good fellow. For ${pronoun} a jolly good fellow, which nobody can deny!`;
+    const happyBirthday = `Happy birthday to you. Happy birthday to you. Happy birthday dear ${name}. Happy birthday to you!`;
 
-    // Assign each word of Good Fellow song
-    outputText += "<h2>Good Fellow Song</h2>";
-    for (let i = 0; i < goodFellow.length; i++) {
-        outputText += `${guests[i % guests.length]}: ${goodFellow[i]}<br>`;
-    }
+    // Display output on the webpage
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = `<h2>Celebratory Songs</h2>
+                           <p>${jollyGoodFellow}</p>
+                           <p>${happyBirthday}</p>`;
 
-    // Display the song output
-    document.getElementById('output').innerHTML = outputText;
 }
 
 /*
