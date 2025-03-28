@@ -1,5 +1,5 @@
 /*
- to respond to the submit button
+  To respond to the submit button
 */
 function solve() {
     const form = document.getElementById('input_form');
@@ -23,21 +23,18 @@ function solve() {
     outputDiv.innerHTML = `<h2>Celebratory Songs</h2>
                            <p>${jollyGoodFellow}</p>
                            <p>${happyBirthday}</p>`;
-
 }
 
-/*
- A quick data dump on Output div to show users input on the browser.
-*/
+// Fix the printFormData function (template literals corrected)
 function printFormData() {
     const form = document.getElementById('input_form');
     const formData = new FormData(form);
     const outputDiv = document.getElementById('output');
-    outputDiv.innerHTML = '<h2> Output <h2>';
-    for (let [key, value] of formData.entries()){
-      outputDiv.innerHTML += `${key}: ${value} <br>`;
+    outputDiv.innerHTML = '<h2>Output</h2>';
+    for (let [key, value] of formData.entries()) {
+        outputDiv.innerHTML += `${key}: ${value} <br>`;
     }
     const myData = Object.fromEntries(formData.entries());
-    console.log(myData)
-    console.log(formData.entries())
+    console.log(myData);
+    console.log(formData.entries());
 }
